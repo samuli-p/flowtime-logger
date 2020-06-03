@@ -4,6 +4,8 @@ A logger application based on the flowtime technique.
 
 Flowtime logger is used for keeping a log of performed tasks and the work and break periods held during those tasks.
 
+This is a work in progress. Check the todo list on the bottom of this file to see what's still missing.
+
 For more information about the flowtime technique please visit:
 https://medium.com/@lightsandcandy/the-flowtime-technique-7685101bd191
 
@@ -33,3 +35,8 @@ Quick start
 
  Upon closing, the program will check that the current task is properly ended.
  If the task was not ended, the program will end it automatically and save it into the database.
+
+ TODO
+ ----
+
+ - Create an interface to view the contents of the database.
