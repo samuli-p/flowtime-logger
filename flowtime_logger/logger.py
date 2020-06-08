@@ -174,9 +174,11 @@ class Task:
 
         with conn:
             # Insert task into database.
-            c.execute("""INSERT INTO Tasks (start_time, end_time)
-                         VALUES (:start, :end)""",
-                      {'start': self.start_time, 'end': self.end_time})
+            c.execute("""INSERT INTO Tasks (description, start_time, end_time)
+                         VALUES (:description, :start, :end)""",
+                      {'description': self.description,
+                       'start': self.start_time,
+                       'end': self.end_time})
 
             # Fetch the task id from database...
             c.execute("""SELECT id FROM Tasks WHERE
@@ -190,15 +192,19 @@ class Task:
             for wp in self.wp_list:
                 c.execute("""INSERT INTO Periods (type, start_time, end_time,
                              task_id) VALUES (:type, :start, :end, :task)""",
-                          {'type': 'wp', 'start': wp.wp_start_time,
-                           'end': wp.wp_end_time, 'task': task_id})
+                          {'type': 'wp',
+                           'start': wp.wp_start_time,
+                           'end': wp.wp_end_time,
+                           'task': task_id})
 
             # Insert break periods into database.
             for bp in self.bp_list:
                 c.execute("""INSERT INTO Periods (type, start_time, end_time,
                              task_id) VALUES (:type, :start, :end, :task)""",
-                          {'type': 'bp', 'start': bp.bp_start_time,
-                           'end': bp.bp_end_time, 'task': task_id})
+                          {'type': 'bp',
+                           'start': bp.bp_start_time,
+                           'end': bp.bp_end_time,
+                           'task': task_id})
 
 
 class WorkPeriod:
