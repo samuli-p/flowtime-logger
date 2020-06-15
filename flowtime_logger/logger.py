@@ -92,12 +92,10 @@ class Task:
         Should be called only when the task is running
         i.e. task_running = True and task_ended = False.
         """
-        if self.task_running:
-            self.task_running = False
-            self.wp_list[-1].end_wp()
-            self.bp_list.append(BreakPeriod(self))
-        else:
-            raise RuntimeError('Can\'t stop a Task that is not running.')
+        assert self.task_running, 'Can\'t stop a Task that is not running.'
+        self.task_running = False
+        self.wp_list[-1].end_wp()
+        self.bp_list.append(BreakPeriod(self))
 
     def cont(self):
         """
@@ -107,13 +105,11 @@ class Task:
         i.e. when task_running = False and task_ended = False.
         """
 
-        if not self.task_running:
-            self.task_running = True
-            self.bp_list[-1].end_bp()
-            self.wp_list.append(WorkPeriod(self))
-        else:
-            raise RuntimeError('Can\'t continue a Task that is already\
-                               running.')
+        assert not self.task_running, 'Can\'t continue a Task that is already\
+ running.'
+        self.task_running = True
+        self.bp_list[-1].end_bp()
+        self.wp_list.append(WorkPeriod(self))
 
     def end(self):
         """
@@ -123,22 +119,18 @@ class Task:
         i.e. when task_running = False and task_ended = False.
         """
 
-        if self.task_ended:
-            raise RuntimeError('The Task has already been ended')
-
-        else:
-            if not self.task_running:
-                self.task_running = False
-                self.task_ended = True
-                # Set the task end_time to be the same as the stop time of the
-                # last working period
-                self.end_time = self.wp_list[-1].wp_end_time
-                # Remove the last item in the bp_list since we're endin the
-                # task and not taking another break
-                self.bp_list.pop()
-            else:
-                raise RuntimeError('The Task needs to be stopped before it can\
-                                   be ended.')
+        assert not self.task_ended, 'Can\'t end a Task that has already been\
+ ended'
+        assert not self.task_running, 'The Task needs to be stopped before it\
+ can be ended.'
+        self.task_running = False
+        self.task_ended = True
+        # Set the task end_time to be the same as the stop time of the
+        # last working period
+        self.end_time = self.wp_list[-1].wp_end_time
+        # Remove the last item in the bp_list since we're endin the
+        # task and not taking another break
+        self.bp_list.pop()
 
     def save(self):
         """
