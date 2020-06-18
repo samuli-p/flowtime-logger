@@ -71,7 +71,7 @@ class TestTask(unittest.TestCase):
 
     def test_task_stop_when_already_stopped(self):
         """Test the Task's stop() method when the Task is already stopped.
-        RuntimeError should be raised.
+        AssertionError should be raised.
         """
         self.task.stop()
 
@@ -80,7 +80,7 @@ class TestTask(unittest.TestCase):
 
     def test_task_cont_when_already_running(self):
         """Test the Task's cont() method when the Task is already running.
-        RuntimeError should be raised
+        AssertionError should be raised
         """
         with self.assertRaises(AssertionError):
             self.task.cont()
