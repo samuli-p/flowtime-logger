@@ -80,14 +80,14 @@ class TestTask(unittest.TestCase):
 
     def test_task_cont_when_already_running(self):
         """Test the Task's cont() method when the Task is already running.
-        AssertionError should be raised
+        AssertionError should be raised.
         """
         with self.assertRaises(AssertionError):
             self.task.cont()
 
     def test_task_end_when_already_ended(self):
-        """Test the Task's end() method when the Task has already been
-        ended.
+        """Test the Task's end() method when the Task has already been ended.
+        AssertionError should be raised.
         """
         self.task.stop()
         self.task.end()
@@ -96,7 +96,9 @@ class TestTask(unittest.TestCase):
             self.task.end()
 
     def test_task_end_when_not_stopped(self):
-        """Test the Task's end() method when the Task hasn't been stopped."""
+        """Test the Task's end() method when the Task hasn't been stopped.
+        AssertionError should be raised.
+        """
         with self.assertRaises(AssertionError):
             self.task.end()
 
