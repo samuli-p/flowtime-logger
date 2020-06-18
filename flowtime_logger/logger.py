@@ -132,11 +132,11 @@ class Task:
         # task and not taking another break
         self.bp_list.pop()
 
-    def save(self):
+    def save(self, database='flogger.db'):
         """
         Save the Task, WorkPeriod and BreakPeriod data into a SQLite database.
 
-        The filename for the database is: flogger.db
+        The default filename for the database is: flogger.db
 
         Tables:
         -------
@@ -149,9 +149,11 @@ class Task:
         """
 
         flogger_dir = pathlib.Path(__file__).parent
-        path_to_db = flogger_dir.joinpath(flogger_dir, 'flogger.db')
+        path_to_db = flogger_dir.joinpath(flogger_dir, database)
 
-        conn = sqlite3.connect(path_to_db)
+        conn = sqlite3.connect(path_to_db,
+                               detect_types=sqlite3.PARSE_DECLTYPES |
+                               sqlite3.PARSE_COLNAMES)
         c = conn.cursor()
 
         # Create tables
@@ -160,8 +162,8 @@ class Task:
                 c.execute("""CREATE TABLE Tasks (
                              id INTEGER PRIMARY KEY,
                              description TEXT,
-                             start_time TEXT,
-                             end_time TEXT
+                             start_time timestamp,
+                             end_time timestamp
                          )""")
         except sqlite3.OperationalError:
             pass
@@ -171,8 +173,8 @@ class Task:
                 c.execute("""CREATE TABLE Periods (
                              id INTEGER PRIMARY KEY,
                              type TEXT,
-                             start_time TEXT,
-                             end_time TEXT,
+                             start_time timestamp,
+                             end_time timestamp,
                              task_id INTEGER
                          )""")
         except sqlite3.OperationalError:
