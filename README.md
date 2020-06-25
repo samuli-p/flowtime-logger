@@ -2,6 +2,8 @@ Flowtime logger
 ===============
 A logger application based on the flowtime technique.
 
+.. image:: flogger.png
+
 Flowtime logger is used for keeping a log of performed tasks and the work and break periods held during those tasks.
 
 **This is a work in progress. Check the todo list on the bottom of this file to see what's still missing.**
