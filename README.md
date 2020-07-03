@@ -16,11 +16,16 @@ Requirements
 
 - Python 3
 - Tk 8.6 (included in the Python 3 binary installers for versions 3.7 and up from python.org)
+- SQLite 3 (comes with Python 3)
 
 To check your version of Tk launch the Python shell and type:
 
     import tkinter
     tkinter._test()
+
+To check your version of SQLite open the terminal and type:
+
+    $ sqlite3 --version
 
 You can find more information on how to install Tk by going to https://tkdocs.com/tutorial/install.html and selecting "Python" from the dropdown menu on the right.
 
