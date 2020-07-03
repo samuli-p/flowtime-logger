@@ -9,9 +9,9 @@ Task
 
 """
 
+from datetime import datetime
 import pathlib
 import sqlite3
-from datetime import datetime
 
 
 class Task:

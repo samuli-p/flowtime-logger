@@ -1,9 +1,10 @@
-import unittest
-import sqlite3
-import os
-import flowtime_logger.flowtime_logger.logger as logger
 from datetime import datetime
+import os
 import pathlib
+import sqlite3
+import unittest
+
+import flowtime_logger.logger as logger
 
 
 class TestTask(unittest.TestCase):

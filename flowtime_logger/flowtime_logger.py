@@ -9,10 +9,11 @@ MainApp
 
 """
 
-import tkinter as tk
-import logger
-from floggergui import FLoggerGUI
 import sys
+import tkinter as tk
+
+from floggergui import FLoggerGUI
+import logger
 
 
 class MainApp:  # Controller

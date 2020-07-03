@@ -9,8 +9,8 @@ FLoggerGUI
 
 """
 
-from tkinter import ttk
 import atexit
+from tkinter import ttk
 
 
 class FLoggerGUI():  # View
