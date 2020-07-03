@@ -16,7 +16,7 @@ Requirements
 
 - Python 3
 - Tk 8.6 (included in the Python 3 binary installers for versions 3.7 and up from python.org)
-- SQLite 3 (comes with Python 3)
+- SQLite 3 (comes bundled with Python 3 installation)
 
 To check your version of Tk launch the Python shell and type:
 
